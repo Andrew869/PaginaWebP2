@@ -2,8 +2,6 @@
     require_once('TCPDF-6.6.5/tcpdf.php');
     require_once('utilities.php');
 
-    session_start();
-
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
     $pdf->SetPrintHeader(false);
     $pdf->SetPrintFooter(false);
@@ -12,11 +10,11 @@
     if(strlen($_SESSION["examPasswd"]) !== 8) {
         $examPasswd = generateExamPasswd(8);
         $_SESSION["examPasswd"] = $examPasswd;
-        editFile($_SESSION["email"], 2, $examPasswd);
+        editFile($_SESSION["email"], 4, $examPasswd);
     }
     else {
         $examPasswd = $_SESSION["examPasswd"];
-        editFile($_SESSION["email"], 2, $examPasswd);
+        editFile($_SESSION["email"], 4, $examPasswd);
     }
     
     $pdf->SetFont('helvetica', '', 12);

@@ -1,31 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-        $email = $_POST["email"];
-        $passwd = $_POST["passwd"];
-        if(empty($email) || empty($passwd)) {
-            echo "<h1>datos vacios!<h1>";
-        }
-        else {
+<?php
+    require_once("utilities.php");
+
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $email = $_POST["email"];
+    $passwd = $_POST["passwd"];
+    if(!empty($email) || !empty($passwd)) {
+        $userData = getUserData($email);
+
+        if(empty($userData[2])){
             $file = fopen("cuentas.txt", 'a');
             
             if($file) {
-                fwrite($file, $email." ".$passwd." 0 1\r\n");
-                
+                fwrite($file, $firstName.':'.$lastName.':'.$email.':'.$passwd.":0:1\r\n");
                 fclose($file);
-                echo "<h1>registro completo!<h1>";
-            }
-            else {
-                echo "<h1>no se pudo registrar ocurrio un error :(<h1>";
+                session_start();
+                $_SESSION["firstName"] = $firstName;
+                $_SESSION["lastName"] = $lastName;
+                $_SESSION["email"] = $email;
+
+                // echo $_SESSION["firstName"];
             }
         }
-    ?>
-    <a href="formulario.php">regresar</a>
-</body>
-</html>
+    }
+    header("Location: index.php");
+?>

@@ -1,17 +1,21 @@
 <?php
+    $currentEmail = "";
+    $currentUserData = array("", "", "", "", "", "");
     function getUserData($email){
+        $userData = array("", "", "", "", "", "");
         $file = fopen("cuentas.txt", "r");
-        $userData = array("", "", "", "");
-        while (!feof($file)) {
-            $linea = fgets($file);
-            if ($linea != "") {
-                $aux = preg_split("/[\s]+/", $linea);
-                if($aux[0] === $email) {
-                    $userData = $aux;
+        if($file){
+            while (!feof($file)) {
+                $linea = fgets($file);
+                if ($linea != "") {
+                    $aux = preg_split("/[:]+/", $linea);
+                    if($aux[2] === $email) {
+                        $userData = $aux;
+                    }
                 }
             }
+            fclose($file);
         }
-        fclose($file);
         return $userData;
     }
 
@@ -28,7 +32,7 @@
             $userData = getUserData($email);
             
             // Busca el usuario a modificar
-            $posicion = strpos($contenido, $userData[0].' '.$userData[1].' '.$userData[2].' '.$userData[3]);
+            $posicion = strpos($contenido, $userData[0].':'.$userData[1].':'.$userData[2].':'.$userData[3].':'.$userData[4].':'.$userData[5]);
 
             for ($i=0; $i < $dataIndex; $i++) { 
                 $posicion += strlen($userData[$i]);
@@ -55,7 +59,7 @@
     }
 
     function generateExamPasswd($longitud) {
-        $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $caracteres = '*+,-./0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $codigo = '';
         
         for ($i = 0; $i < $longitud; $i++) {
@@ -63,5 +67,26 @@
         }
         
         return $codigo;
+    }
+
+    function updateSessionVars(){
+        global $currentEmail;
+        $_SESSION["firstName"] = $currentUserData[0];
+        $_SESSION["lastName"] = $currentUserData[1];
+        $_SESSION["email"] = $currentUserData[2];
+    }
+
+    function setup($email) {
+        global $currentEmail;
+        $currentEmail = $email;
+        global $currentUserData;
+        $currentUserData = getUserData($email);
+    }
+    
+    if(end(preg_split("/[\/]+/", $_SERVER['PHP_SELF'])) !== "registro.php"){
+        session_start();
+        if (!empty($_SESSION["email"])) {
+            setup($_SESSION["email"]);
+        }
     }
 ?>
