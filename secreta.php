@@ -1,11 +1,15 @@
 <?php
+    require_once("utilities.php");
     ob_start();
     session_start();
 
-if (empty($_SESSION["usuario"])) {
-    # Lo redireccionamos al formulario de inicio de sesión
-    header("Location: formulario.php");
-} 
+    if (empty($_SESSION["email"])) {
+        # Lo redireccionamos al formulario de inicio de sesión
+        header("Location: formulario.php");
+    }
+    else {
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,81 +20,58 @@ if (empty($_SESSION["usuario"])) {
     <title>Document</title>
 </head>
 <body>
-<?php
+    <?php require 'formulario.php'; ?>
+    <div style="margin:100px;">
+        <?php
+            $userData = getUserData($_SESSION["email"]);
+            $_SESSION["examPasswd"] = $userData[2];
+            $_SESSION["attempts"] = $userData[3];
 
-require 'formulario.php';
+            echo "<h1>Bienvenido(a) ". $_SESSION["email"] .'!</h1>';
+            echo "<h2>tu codigo es: ".$userData[2]."</h2>";
+            echo "<h2>te quedan : ".$userData[3]." intentos</h2>";
 
-?>
-
-<div style="margin:100px;">
-
-<?php
-
-# Iniciar sesión para usar $_SESSION
-
-
-echo "Bienvenido(a) ". $_SESSION["usuario"];
-
-$usuario = $_SESSION["usuario"];
-
-if(!empty($_POST["clave"])) {
-    $file = fopen("cuentas.txt", "r");
-    $flag = 0; //para saber si la cuenta y contrasena estan en el archivo
-    while (!feof($file)) {
-        $linea = fgets($file);
-        if ($linea != "") {
-            $aux = preg_split("/[\s]+/", $linea);   /*https://www.w3schools.com/php/func_regex_preg_split.asp
-                                            https://www.w3schools.com/php/php_ref_regex.asp*/
-            $user = $aux[0];
-            $contrasena = $aux[1];
-            $claveGenerada = $aux[2];
-            $alreadyDoIt = $aux[3];
-
-            if ($user === $usuario && $claveGenerada === $_POST["clave"] && $alreadyDoIt === '0') {
-                $flag = 1;
-                break;
+            $clave = $_POST["clave"];
+            if(!empty($clave)) {
+                $file = fopen("cuentas.txt", "r");
+                $flag = 0; //para saber si la cuenta y contrasena estan en el archivo
+                while (!feof($file)) {
+                    $linea = fgets($file);
+                    if ($linea != "") {
+                        $aux = preg_split("/[\s]+/", $linea);   /*https://www.w3schools.com/php/func_regex_preg_split.asp
+                                                        https://www.w3schools.com/php/php_ref_regex.asp*/
+                        $email = $aux[0];
+                        $claveGenerada = $aux[2];
+                        $attempts = $aux[3];
+                        // echo $claveGenerada;
+                        if ($email === $_SESSION["email"] && $claveGenerada === $clave && $attempts > 0) {
+                            $flag = 1;
+                            break;
+                        }
+                    }
+                }
+                fclose($file);
+                if($flag) {
+                    echo "true";
+                    header("location:examen.php");
+                }
             }
-        }
-    }
-    fclose($file);
-    if($flag) {
-        header("location: examen.php");
-    }
-}
-
-if ( empty($_SESSION["compras"]) && empty($_POST["articulo"] ))
-    echo "<br>carrito vacio";
-else{
-    echo "<p>Llevas comprado: ";
-    array_push($_SESSION['compras'], $_POST['articulo']);
-    print_r($_SESSION['compras']);
-   }
-  
-?>
-<p>
-    Soy una pagina que solo pueden ver los usuarios logueados
-</p>
-<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?> " method="POST">     
-   
-           <select name="articulo">
-               <option value="laptop">laptop</option>
-               <option value="impresora">impresora</option>
-               <option value="mouse">mouse</option>
-               <option value="tablet">tablet</option>
-               <option value="iphone">iphone</option>
-               <option value="camara">camara</option>
-               <option value="disco duro">disco duro</option>
-               <option value="apuntador">apuntador</option>
-           </select>
-           <input type="submit" value="enviar"><br>  
-</form>
-<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
-    <input type="text" name="clave" id="" placeholder="clave generada" required>
-    <input type="submit" value="realizar examen">
-</form>
-       
-<!--  le indicamos al usuario un enlace para salir-->
-<a href="logout.php">Cerrar sesión</a>
-</div>
+        ?>
+        <a href="generate_pdf.php" target=”_blank” id="generador"><?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "Generar clave (PDF)" : "ver PDF"; ?></a>
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+            <input type="text" name="clave" id="" placeholder="clave generada" required>
+            <input type="submit" value="realizar examen">
+        </form>
+        <a href="logout.php">Cerrar sesión</a>
+    </div>
+    <script>
+document.getElementById("generador").addEventListener("click", function(event) {
+    // Evita que el enlace abra la nueva página
+    // event.preventDefault();
+    sleep(10);
+    // Recarga la página actual
+    location.reload();
+});
+</script>
 </body>
 </html>

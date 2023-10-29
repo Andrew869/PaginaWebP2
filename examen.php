@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (empty($_SESSION["usuario"])) {
+    if (empty($_SESSION["email"])) {
         # Lo redireccionamos al formulario de inicio de sesión
         header("Location: formulario.php");
         # Y salimos del script

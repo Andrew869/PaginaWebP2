@@ -16,7 +16,7 @@
             $file = fopen("cuentas.txt", 'a');
             
             if($file) {
-                fwrite($file, $email." ".$passwd."\r\n");
+                fwrite($file, $email." ".$passwd." 0 1\r\n");
                 
                 fclose($file);
                 echo "<h1>registro completo!<h1>";

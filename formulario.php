@@ -30,10 +30,10 @@
                        <li class="px-3 py-2">
                            <form class="form" role="form" action="login.php" method="post">
                                 <div class="form-group">
-                                    <input name="usuario" id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
+                                    <input name="email" id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
                                 </div>
                                 <div class="form-group">
-                                    <input name="palabra_secreta" id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password" required="">
+                                    <input name="passwd" id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password" required="">
                                 </div>
                                  
                                 <div class="form-group">

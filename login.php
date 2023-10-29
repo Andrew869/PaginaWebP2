@@ -1,35 +1,24 @@
 <?php
-    $usuario = $_POST["usuario"];
-    $palabra_secreta = $_POST["palabra_secreta"];
+    require_once("utilities.php");
+    $email = $_POST["email"];
+    $passwd = $_POST["passwd"];
+    
+    $userData = getUserData($email);
 
+    // echo $userData[0].' ';
+    // echo $userData[1].' ';
+    // echo $email.' ';
+    // echo $passwd.' ';
 
-    $file = fopen("cuentas.txt", "r");
-    $band = 0; //para saber si la cuenta y contrasena estan en el archivo
-    while (!feof($file)) {
-        $linea = fgets($file);
-        if ($linea != "") {
-            $aux = preg_split("/[\s,]+/", $linea);   /*https://www.w3schools.com/php/func_regex_preg_split.asp
-                                            https://www.w3schools.com/php/php_ref_regex.asp*/
-            $user = $aux[0];
-            $contrasena = $aux[1];
-
-            if ($user === $usuario && $contrasena === $palabra_secreta) {
-                $band = 1;
-                break;
-            }
-        }
-    }
-    fclose($file);
-    echo "iniciando sesion...";
-    # Luego de haber obtenido los valores, ya podemos comprobar:
-    if ($band == 1) {
-
+    if ($userData[0] === $email && $userData[1] === $passwd) {
         session_start();
-        $micarrito = [];
 
-        $_SESSION["usuario"] = $usuario;
-        $_SESSION["compras"] = $micarrito;
+        $userData = getUserData($email);
 
+        $_SESSION["email"] = $email;
+        // $_SESSION["examPasswd"] = $userData[2];
+        // $_SESSION["attempts"] = $userData[3];
+        // echo $_SESSION["examPasswd"];
         # Luego redireccionamos a la pagina "Secreta"
         # redireccionamiento con php
         // header("refresh:5; url=secreta.php");
@@ -44,12 +33,10 @@
          
         
         echo '<div  style="width:50%; margin:100px;" class="alert alert-warning alert-dismissible fade show" role="alert">';
-            echo "<p style='text-align:center;'>El usuario o la contrasena son incorrectos</p>";
+            echo "<p style='text-align:center;'>El email$email o la contrasena son incorrectos</p>";
             echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
             echo    '<span aria-hidden="true">&times;</span>';
             echo '</button>';
         echo "</div>";
-        
-
     }
 ?>
