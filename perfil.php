@@ -5,10 +5,7 @@
             // echo $datum;
             editFile($_SESSION["email"], $index, $datum);
         }
-        $currentUserData = getUserData($_SESSION["email"]);
-        $_SESSION["firstName"] = $currentUserData[0];
-        $_SESSION["lastName"] = $currentUserData[1];
-        $_SESSION["email"] = $currentUserData[2];
+        setup($_SESSION["email"]);
     }
 ?>
 <!DOCTYPE html

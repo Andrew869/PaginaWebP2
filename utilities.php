@@ -69,18 +69,15 @@
         return $codigo;
     }
 
-    function updateSessionVars(){
-        global $currentEmail;
-        $_SESSION["firstName"] = $currentUserData[0];
-        $_SESSION["lastName"] = $currentUserData[1];
-        $_SESSION["email"] = $currentUserData[2];
-    }
-
     function setup($email) {
         global $currentEmail;
+        global $_SESSION;
         $currentEmail = $email;
         global $currentUserData;
         $currentUserData = getUserData($email);
+        $_SESSION["firstName"] = $currentUserData[0];
+        $_SESSION["lastName"] = $currentUserData[1];
+        $_SESSION["email"] = $currentUserData[2];
     }
     
     if(end(preg_split("/[\/]+/", $_SERVER['PHP_SELF'])) !== "registro.php"){
