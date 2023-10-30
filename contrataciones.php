@@ -2,10 +2,9 @@
     require_once("utilities.php");
     ob_start();
 
-    if (empty($_SESSION["email"])) {
-        # Lo redireccionamos al formulario de inicio de sesión
-        header("Location: index.php");
-    }
+    verifySession();
+
+    echo $_POST[""]
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +23,8 @@
             $_SESSION["attempts"] = $currentUserData[5];
 
             echo "<h1>Bienvenido(a) ".$_SESSION["firstName"].'!</h1>';
-            echo "<h2>tu codigo es: ".$_SESSION["examPasswd"]."</h2>";
-            echo "<h2>te quedan : ".$_SESSION["attempts"]." intentos</h2>";
+            echo "<h2>Tu codigo es: ".$_SESSION["examPasswd"]."</h2>";
+            echo "<h2>Intentos restantes para hacer el examen: ".$_SESSION["attempts"]."</h2>";
 
             $examPasswd = $_POST["examPasswd"];
             if(!empty($examPasswd)) {
@@ -53,7 +52,8 @@
                 }
             }
         ?>
-        <a href="generate_pdf.php" target=”_blank” id="generador"><?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "Generar clave (PDF)" : "ver PDF"; ?></a>
+        <p>Para continuar debes hacer el siguiente formulario</p>
+        <a href="<?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "solicitud_empleo.php" : "generate_pdf.php"; ?>"  id="generador"><?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "llenar Formulario" : "ver PDF"; ?></a>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <input type="text" name="examPasswd" id="" placeholder="clave generada" required>
             <input type="submit" value="realizar examen">

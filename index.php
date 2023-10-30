@@ -10,7 +10,21 @@
     <title>Pagina principal</title>
 </head>
 <body>
-    <?php include "formulario.php"; ?>
+    <?php 
+        include "formulario.php";
+        
+        if (!empty($_SESSION["email"])) {
+            $hora = date("H");
+            if ($hora >= 5 && $hora < 12) {
+                $saludo = "¡Buenos días";
+            } elseif ($hora >= 12 && $hora < 18) {
+                $saludo = "¡Buenas tardes";
+            } else {
+                $saludo = "¡Buenas noches";
+            }
+            echo "<h1>".$saludo.' '.$_SESSION["firstName"]."!</h1>";
+        }
+    ?>
     <div class="seccion">seccion 1</div>
     <div class="seccion">seccion 2</div>
     <div class="seccion">seccion 3</div>

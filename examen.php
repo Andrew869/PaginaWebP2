@@ -1,12 +1,6 @@
 <?php
-    session_start();
-
-    if (empty($_SESSION["email"])) {
-        # Lo redireccionamos al formulario de inicio de sesión
-        header("Location: formulario.php");
-        # Y salimos del script
-        exit();
-    }
+    require_once("utilities.php");
+    verifySession();
 
     $preguntas = array(
         array(

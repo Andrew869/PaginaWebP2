@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set('America/Mexico_City');
     $currentEmail = "";
     $currentUserData = array("", "", "", "", "", "");
     function getUserData($email){
@@ -38,6 +39,10 @@
                 $posicion += strlen($userData[$i]);
                 $posicion++;
             }
+
+            if($dataIndex == 5){
+                $newData .= PHP_EOL;
+            }
             
             if ($posicion !== false) {
                 // Reemplaza la información con la nueva información
@@ -67,6 +72,13 @@
         }
         
         return $codigo;
+    }
+
+    function verifySession() {
+        if (empty($_SESSION["email"])) {
+            header("Location: index.php");
+            die();
+        }
     }
 
     function setup($email) {

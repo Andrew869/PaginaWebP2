@@ -12,7 +12,7 @@
             $file = fopen("cuentas.txt", 'a');
             
             if($file) {
-                fwrite($file, $firstName.':'.$lastName.':'.$email.':'.$passwd.":0:1\r\n");
+                fwrite($file, $firstName.':'.$lastName.':'.$email.':'.$passwd.":0:1\n");
                 fclose($file);
                 session_start();
                 $_SESSION["firstName"] = $firstName;

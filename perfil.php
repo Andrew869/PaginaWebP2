@@ -1,5 +1,8 @@
 <?php
     require_once("utilities.php");
+
+    verifySession();
+
     if(!empty($_POST)) {
         foreach($_POST as $index => $datum) {
             // echo $datum;

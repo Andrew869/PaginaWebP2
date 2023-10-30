@@ -6,8 +6,9 @@
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
+                <li class="nav-item"><a href="sobreNosotros" class="nav-link">Sobre Nosotros</a></li>
+                <li class="nav-item"><a href="contactanos.php" class="nav-link">Contactanos</a></li>
+                <li class="nav-item"><a href="encuentranos.php" class="nav-link">Encuentranos</a></li>
                 <?php if(!empty($_SESSION["email"])) echo '<li class="nav-item"><a href="contrataciones.php" class="nav-link">Contrataciones</a></li>'; ?>
             </ul>
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">

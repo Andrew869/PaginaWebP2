@@ -1,6 +1,14 @@
 <?php
-    require_once("utilities.php");
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
 
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
+    require 'PHPMailer-master/src/Exception.php';
+    require_once("utilities.php");
+    verifySession();
+    
     $respuestasCorrectas = array(
         "0" => "Un lenguaje que organiza el código en objetos",
         "1" => "Un conjunto de reglas y protocolos para la comunicación entre software",
@@ -14,10 +22,10 @@
         "9" => "Una técnica para pasar las dependencias de un objeto en lugar de crearlas internamente",
     );
 
-    $attempts = $currentUserData[5];
-    if($attempts > 0)$attempts--;
+    // $attempts = $currentUserData[5];
+    // if($attempts > 0)$attempts--;
 
-    editFile($_SESSION["email"], 5, $attempts);
+    // editFile($_SESSION["email"], 5, $attempts);
 
     $respuestasUsuario = $_POST;
 
@@ -30,8 +38,42 @@
     }
 
     $calificacion = $aciertos;
-    $aprobado = ($aciertos >= 8);
+    $aprobado = true;
 
+    $mail = new PHPMailer;
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'andresgh4@gmail.com';
+        $mail->Password = 'qmvh bgsd fugl vlcd';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        // Destinatario
+        // $mail->setFrom('', '');  // dirección de correo y nombre
+        $mail->addAddress($_SESSION["email"]);  // la dirección de destino
+
+        // Contenido del correo
+        $mail->isHTML(true);
+        $mail->Subject = ($aprobado ? "¡Felicidades! Ha aprobado el examen" : "Resultado del examen");
+        $mail->Body = ($aprobado ?
+            "¡Bienvenido a la empresa CodeCrafters!\n\n" .
+            "Estamos emocionados de informarte que has aprobado el examen. Te pedimos que traigas los siguientes documentos para completar tu registro en la empresa:\n" .
+            "- CURP\n" .
+            "- Acta de nacimiento\n" .
+            "- Certificado de preparatoria y secundaria\n\n" .
+            "Esperamos verte pronto en nuestras instalaciones. ¡Felicidades de nuevo!"
+            :
+            "Lamentamos informarte que no has aprobado el examen. No te desanimes, puedes volver a intentarlo dentro de un mes. Sigue practicando!");
+
+        $mail->addAttachment('img/sign.png');
+
+        $mail->send();
+        // echo "Tu mensaje ha sido enviado. Atenderemos tu solicitud a la brevedad.";
+    } catch (Exception $e) {
+        // echo "Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde. Error: {$mail->ErrorInfo}";
+    }
 ?>
 
 <!DOCTYPE html>
