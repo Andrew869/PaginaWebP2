@@ -53,22 +53,12 @@
             }
         ?>
         <p>Para continuar debes hacer el siguiente formulario</p>
-        <a href="<?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "solicitud_empleo.php" : "generate_pdf.php"; ?>"  id="generador"><?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "llenar Formulario" : "ver PDF"; ?></a>
+        <a href="<?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "solicitud_empleo.php" : "generate_pdf.php"; ?>"><?php echo (strlen($_SESSION["examPasswd"]) !== 8) ? "llenar Formulario" : "ver PDF"; ?></a>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <input type="text" name="examPasswd" id="" placeholder="clave generada" required>
             <input type="submit" value="realizar examen">
         </form>
         <a href="logout.php">Cerrar sesión</a>
     </div>
-    <script>
-        document.getElementById("generador").addEventListener("click", function(event) {
-            // Evita que el enlace abra la nueva página
-            // event.preventDefault();
-            setTimeout(function() {
-                console.log("Pausa de 500 milisegundos");
-                location.reload();
-            }, 500);
-        });
-    </script>
 </body>
 </html>

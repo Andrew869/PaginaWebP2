@@ -22,10 +22,10 @@
         "9" => "Una técnica para pasar las dependencias de un objeto en lugar de crearlas internamente",
     );
 
-    // $attempts = $currentUserData[5];
-    // if($attempts > 0)$attempts--;
+    $attempts = $currentUserData[5];
+    if($attempts > 0)$attempts--;
 
-    // editFile($_SESSION["email"], 5, $attempts);
+    editFile($_SESSION["email"], 5, $attempts);
 
     $respuestasUsuario = $_POST;
 
@@ -38,7 +38,7 @@
     }
 
     $calificacion = $aciertos;
-    $aprobado = true;
+    $aprobado = ($aciertos >= 8);
 
     $mail = new PHPMailer;
     try {
@@ -65,7 +65,7 @@
             "- Certificado de preparatoria y secundaria\n\n" .
             "Esperamos verte pronto en nuestras instalaciones. ¡Felicidades de nuevo!"
             :
-            "Lamentamos informarte que no has aprobado el examen. No te desanimes, puedes volver a intentarlo dentro de un mes. Sigue practicando!");
+            "Lamentamos informarte que no has aprobado el examen. No te desanimes, puedes volver a intentarlo dentro de un mes. ¡Sigue practicando!");
 
         $mail->addAttachment('img/sign.png');
 

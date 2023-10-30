@@ -60,7 +60,7 @@
                         break;
                 }
     
-                $pdf->Image($nombreDestino, 130, 10, 50, '', $tipo);
+                $pdf->Image($nombreDestino, 140, 10, 50, '', $tipo);
             }
         }
 

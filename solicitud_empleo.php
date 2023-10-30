@@ -86,7 +86,7 @@
 
                 <!-- Campo para subir una foto de un rostro -->
                 <label for="foto">Subir una foto de un rostro:</label>
-                <input type="file" name="foto" required><br>
+                <input type="file" name="foto" accept="image/*" required><br>
 
                 <input type="submit" id="miFormulario" value="Finalizar"></input>
             </form>
