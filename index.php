@@ -10,7 +10,7 @@
     <title>Pagina principal</title>
 </head>
 <body>
-    <?php 
+    <?php
         include "formulario.php";
         
         if (!empty($_SESSION["email"])) {
@@ -29,5 +29,10 @@
     <div class="seccion">seccion 2</div>
     <div class="seccion">seccion 3</div>
     <div class="seccion">seccion 4</div>
+
+    <?php
+            
+        echo getLastModification(__FILE__);
+    ?>
 </body>
 </html>

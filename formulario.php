@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+<nav class="navbar navbar-expand-lg" role="navigation">
     <div class="container">
         <a class="navbar-brand" href="index.php">Inicio</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">

@@ -112,10 +112,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <?php include "styles.php"; ?>
     <title>Preguntas para Desarrolladores de Software</title>
-    
 </head>
 <body>
+    <?php include "formulario.php"; ?>
     <h1>Preguntas para Desarrolladores de Software</h1>
     <form action="calificar.php" method="post">
         <ol>
