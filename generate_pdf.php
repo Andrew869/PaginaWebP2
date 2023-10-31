@@ -71,7 +71,7 @@
         for ($i=0; $i < 5; $i++) { 
             $pdf->Cell(0, 10, '', 0, 1, 'C');
         }
-        $pdf->Cell(0, 10, 'CodeCrafters', 0, 1, 'C');
+        $pdf->Cell(0, 10, 'VirtuCreatix', 0, 1, 'C');
         $pdf->SetFont('helvetica', '', 10);
         $redaccion = "En este acto, certificamos que $nombre $apellidos ha completado satisfactoriamente su registro para solicitar su examen de ingreso para el puesto $puesto.";
         $pdf->MultiCell(0, 10, $redaccion, 0, 'C');

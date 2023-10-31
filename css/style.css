@@ -29,7 +29,7 @@ iframe {
 }
 
 .col-md-4 {
-    background: crimson;
+    /* background: crimson; */
     border: none;
 }
 
@@ -121,13 +121,16 @@ footer .disclaimer {
 #solicitud-empleo {
     color:#032123;
     max-width: 700px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
+    margin: 50px auto;
     font-size: 16px;
     border: 2px solid #a61717; /* Borde sólido de 2 píxeles con color #333 */
-            border-radius: 20px;    /* Borde circular */
-            padding: 20px;          /* Espacio interno dentro del formulario */
-            background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;    /* Borde circular */
+    padding: 20px;          /* Espacio interno dentro del formulario */
+    background: white;
+}
+
+#solicitud-empleo .out-inputs{
+    margin-left: 30px;
 }
 
 #solicitud-empleo label {
@@ -139,7 +142,7 @@ footer .disclaimer {
 #solicitud-empleo input {
     background-color:transparent;
     color: #032123;
-    border: 2px solid #001aff;
+    /* border: 2px solid #001aff; */
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -165,8 +168,37 @@ button {
     width: 400px; /* Ancho de la imagen */
     height: 400px; /* Altura de la imagen */
     object-fit: cover; /* Controla el ajuste de la imagen en el contenedor */
-    position: relative;
-    top: 10; left: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+    #nos img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #nos table .text{
+        font-size: 24px;
+    }
+
+    body {
+        background-color: lightblue;
+    }
+
+    .top {
+        flex-flow: column;
+    }
+
+    #prin h1 {
+        font-size: 10px;
+    }
+
+    .top img { 
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    
 }
 
 /* Animación para imágenes */
@@ -260,6 +292,10 @@ div.form-group {
     align-items: center;
 }
 
+.top img{
+    width: 300px;
+}
+
 .top div {
     padding: 0 30px;
 }
@@ -303,7 +339,7 @@ a[data-target="#modalPassword"] {
     /* background-color: #007bff; */
 }
 
-.user-info a {
+.user-info a, .containerC a.formulario, input#miFormulario {
     text-decoration: none;
     background: #007bff;
     color: white;
@@ -321,3 +357,110 @@ a[data-target="#modalPassword"] {
     bottom: 0;
     width: 100%;
 }
+
+.slide {
+    width: 90%; 
+    aspect-ratio: 16/9;
+    /* margin: auto; */
+}
+
+.slide .carousel-item {
+    width: 100%;
+    height: 100%;
+    background: #001aff;
+}
+
+.slide img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.slide h5, .slide p {
+    text-shadow: 2px 2px black;
+}
+
+.containerC {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerC .dynamic {
+    padding: 50px;
+    text-align: center;
+}
+
+.containerC .divf {
+    margin: 50px auto;
+}
+
+.containerC a.formulario{
+    padding: 10px 20px;
+}
+
+.containerC h1 {
+    margin-bottom: 40px;
+}
+
+.contenedor{
+    display: grid;
+    grid-gap:20px;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-areas: "header header header"
+                        "sidebar-1 sidebar-1 sidebar-1"
+                        "sidebar-1 sidebar-1 sidebar-1"
+                        "footer footer footer"
+
+
+
+                    }
+
+.contenedor .header{
+    background:transparent;
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    /*grid-column-start: 1;
+    grid-column-end: 4;*/
+
+}
+
+.contenedor .sidebar-1{
+background :#ab0fd2;
+grid-column-start: sidebar-1;
+grid-column-end: sidebar-1;
+grid-row-start: sidebar-1;
+grid-row-end: sidebar-1;
+
+padding: 300px;
+/* grid-column: sidebar-l;
+grid-row: sidebar-l; 8 */
+grid-area: sidebar-1;
+
+}
+
+
+    .contenedor .footer{
+    background :#05070a;
+    grid-area: footer;
+    }
+
+    .contenedor{
+        width:90%;
+        max-width: 1350px;
+        border: 10px solid #c84d4d;
+        margin:auto;
+        font-size: 50px;
+        line-height: 50px;
+        text-align: center;    
+   }
+   
+   .contenedor > div{
+       display:block;
+       padding: 20px;
+       color: #fff;
+       background: #899eba;
+       box-shadow: 2px 2px 10px rgba(0,0,0,.25);
+   }

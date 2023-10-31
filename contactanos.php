@@ -1,6 +1,8 @@
 <?php require_once("utilities.php"); ?>
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/9b86802e8e.js" crossorigin="anonymous"></script>
     <?php require "styles.php"; ?>
     <title>Redes sociales de nosotros</title>

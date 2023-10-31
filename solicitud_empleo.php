@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include "styles.php"; ?>
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <?php include "formulario.php"; ?>
     <div id="solicitud-empleo">
             <h2>Llena la solicitud de empleo si quieres postularte a un puesto de trabajo</h2>
-            
+            <div class="out-inputs">
                 <label for="firstName">Nombre:</label>
                 <input type="text" id="firstName" name="firstName" value="<?php echo $_SESSION["firstName"] ?>" disabled required><br>
-
+                
                 <label for="lastName">Apellidos:</label>
                 <input type="text" id="lastName" name="lastName" value="<?php echo $_SESSION["lastName"] ?>" disabled required><br>
-            
+            </div>
             <form method="post" action="generate_pdf.php" enctype="multipart/form-data">
                 <label for="telefono">Teléfono:</label>
                 <input type="text" name="telefono" required><br>
@@ -87,9 +88,10 @@
                 <!-- Campo para subir una foto de un rostro -->
                 <label for="foto">Subir una foto de un rostro:</label>
                 <input type="file" name="foto" accept="image/*" required><br>
-
+                
                 <input type="submit" id="miFormulario" value="Finalizar"></input>
             </form>
         </div>
+    <?php include "footer.php" ?>
 </body>
 </html>

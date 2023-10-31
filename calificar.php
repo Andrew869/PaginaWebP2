@@ -51,14 +51,14 @@
         $mail->Port = 587;
 
         // Destinatario
-        $mail->setFrom('email@craft.com', 'CodeCraft');
+        $mail->setFrom('email@craft.com', 'VirtuCreatix');
         $mail->addAddress($_SESSION["email"]);  // la dirección de destino
 
         // Contenido del correo
         $mail->isHTML(true);
         $mail->Subject = ($aprobado ? "¡Felicidades! Ha aprobado el examen" : "Resultado del examen");
         $mail->Body = ($aprobado ?
-            "¡Bienvenido a la empresa CodeCrafters!\n\n" .
+            "¡Bienvenido a la empresa VirtuCreatix!\n\n" .
             "Estamos emocionados de informarte que has aprobado el examen. Te pedimos que traigas los siguientes documentos para completar tu registro en la empresa:\n" .
             "- CURP\n" .
             "- Acta de nacimiento\n" .
