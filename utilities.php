@@ -82,7 +82,7 @@
     }
 
     function getLastModification($file) {
-        return date("Y-m-d H:i:s", filemtime($file));
+        return date("m/d/Y H:i:s", filemtime($file));
     }
 
     function setup($email) {

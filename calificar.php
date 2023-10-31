@@ -51,7 +51,7 @@
         $mail->Port = 587;
 
         // Destinatario
-        // $mail->setFrom('', '');  // dirección de correo y nombre
+        $mail->setFrom('email@craft.com', 'CodeCraft');
         $mail->addAddress($_SESSION["email"]);  // la dirección de destino
 
         // Contenido del correo

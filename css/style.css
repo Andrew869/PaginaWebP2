@@ -1,6 +1,6 @@
 body {
     background: crimson;
-    color: aqua;
+    color: white;
 }
 
 h3 {
@@ -12,13 +12,40 @@ iframe {
     height: 100vh;
 }
 
+.fa-cog {
+    display: none;
+}
+
+#contac {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.card {
+    background: #007bff;
+    
+}
+
+.col-md-4 {
+    background: crimson;
+    border: none;
+}
+
+.col-md-4 img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
 nav {
     background: white;
 }
 
 div.seccion {
     padding: 40px 0;
-    background-color: #0091ef;
+    background-color: #007bff;
     text-align: center;
     border-radius: 5px;
     margin: 30px auto;
@@ -50,4 +77,247 @@ input[type="submit"]{
 input[type="radio"] {
     border: none;
     outline: none;
+}
+
+footer {
+    background: white;
+    color: #007bff;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    font-weight: bold;
+    position: relative;
+    bottom: 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer .disclaimer {
+    text-decoration: underline;
+}
+
+.last-m {
+    background: #007bff;
+    border-radius: 0 0 10px 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.logo { 
+    width: 150px;
+    background: #032123;
+    border-radius: 10px;
+    transition: transform .2s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+#solicitud-empleo {
+    color:#032123;
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: 2px solid #a61717; /* Borde sólido de 2 píxeles con color #333 */
+            border-radius: 20px;    /* Borde circular */
+            padding: 20px;          /* Espacio interno dentro del formulario */
+            background-color: rgba(255, 255, 255, 0.5);
+}
+
+#solicitud-empleo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#solicitud-empleo input {
+    background-color:transparent;
+    color: #032123;
+    border: 2px solid #001aff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    color: #5e96d2;
+    border: 2px solid #1d76d5;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.registro input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+#nos img {
+    border-radius: 50%; /* Establece un borde redondo */
+    width: 400px; /* Ancho de la imagen */
+    height: 400px; /* Altura de la imagen */
+    object-fit: cover; /* Controla el ajuste de la imagen en el contenedor */
+    position: relative;
+    top: 10; left: 100px;
+}
+
+/* Animación para imágenes */
+#nos img:hover {
+    transform: scale(1.1); /* Aplica un aumento de escala al pasar el ratón por encima */
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+}
+
+#prin{
+    margin-top: 80px;
+    color:wheat;
+    text-align: center;
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+/* Estilo para las imágenes */
+#prin img {
+    max-width: 100%; /* Ajusta el tamaño máximo de las imágenes */
+    height: auto; /* Mantiene la relación de aspecto de las imágenes */
+}
+
+/* Estilo para los títulos */
+#prin h1, h2 {
+    text-align: center; /* Centra los títulos */
+}
+
+/* Estilo para los párrafos */
+#prin p {
+    text-align: justify; 
+    text-indent: 1em; 
+    margin: 10px 0; 
+    line-height: 1.5; 
+}
+
+/* Estilo para la lista con viñetas */
+#prin li {
+    list-style-type: disc; /* Tipo de viñeta (puedes cambiarlo a tu preferencia) */
+    margin-left: 1em; /* Espacio entre el borde izquierdo y el texto de la lista */
+}
+
+p {
+    margin: 0;
+}
+
+table {
+    text-align: justify;
+}
+
+td[colspan="2"] {
+    padding-top: 50px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#nos {
+    margin: 50px;
+}
+
+#nos h2 {
+    font-size: 52px;
+}
+
+#encuentranos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#encuentranos .dir {
+    flex: 0 1 auto;
+    padding: 0 20px;
+}
+
+#encuentranos .dir h2 {
+    font-size: 20px;
+}
+
+#encuentranos .frame {
+    flex: 1 1 auto;
+}
+
+div.form-group {
+    width: 200px;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top div {
+    padding: 0 30px;
+}
+
+a[data-target="#modalPassword"] {
+    color: #007bff;
+}
+
+.wrapper {
+    margin: 40px auto 84px;
+    border-radius: 15px;
+    background: white;
+    width: 400px;
+}
+
+.user-info {
+    /* background: white; */
+    border-left: 1px solid rgb(143, 143, 143);
+    border-right: 1px solid rgb(143, 143, 143);
+    border-top: 1px solid rgb(143, 143, 143);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info.div0 {
+    border-radius: 15px 15px 0 0;
+}
+
+.user-info.div3 {
+    border-radius: 0 0 15px 15px;
+    border-bottom: 1px solid rgb(143, 143, 143);
+}
+
+.user-info div {
+    display: flex;
+    flex-flow: column;
+    width: 60%;
+    padding: 15px 0;
+    /* background-color: #007bff; */
+}
+
+.user-info a {
+    text-decoration: none;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.user-info a:hover {
+    background: #001aff;
+}
+
+.peril-footer footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

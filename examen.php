@@ -117,6 +117,7 @@
 </head>
 <body>
     <?php include "formulario.php"; ?>
+    <div class="last-m">Última actualización: <?php echo getLastModification(__FILE__); ?></div>
     <h1>Preguntas para Desarrolladores de Software</h1>
     <form action="calificar.php" method="post">
         <ol>
@@ -137,5 +138,6 @@
         <input type="submit" id="botonEnviar" value="Enviar respuestas" disabled>
     </form>
     <script src="js/abilitarBoton.js"></script>
+    <?php include "footer.php"; ?>
 </body>
 </html>

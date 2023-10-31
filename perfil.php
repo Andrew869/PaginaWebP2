@@ -20,18 +20,22 @@
     <title>Perfil</title>
 </head>
 <body>
-    <?php include "formulario.php";
-        $dataName = array("Nombre(s)", "Apellidos", "Correo", "Contraseña");
-        for ($i=0; $i < 4; $i++) { 
-    ?>
-    <div>
-        <span><?php echo $dataName[$i].": " ?></span>
-        <span><?php echo ($i == 3)? "••••••••" : $currentUserData[$i] ?></span>
-        <a href="#" id="<?php echo "datum_".$i ?>" data-toggle="modal" data-target="#updateInfo">Actualizar dato</a>
-    </div>
-    <?php
-        }
-    ?>
+    <?php include "formulario.php"; ?>
+    <div class="last-m">Última actualización: <?php echo getLastModification(__FILE__); ?></div>
+    <div class="wrapper-parent">
+    <div class="wrapper">
+        <?php
+            $dataName = array("Nombre(s)", "Apellidos", "Correo", "Contraseña");
+            for ($i=0; $i < 4; $i++) { ?>
+        <div class="user-info <?php echo "div".$i ?>">
+            <div>
+                <span><?php echo $dataName[$i].": " ?></span>
+                <span><?php echo ($i == 3)? "••••••••" : $currentUserData[$i] ?></span>
+            </div>
+            <a href="#" id="<?php echo "datum_".$i ?>" data-toggle="modal" data-target="#updateInfo">Modificar</a>
+        </div>
+        <?php } ?>
+        </div>
     <div id="updateInfo" class="modal fade" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -56,5 +60,9 @@
         </div>
     </div>
     <script src="js/updateForm.js"></script>
+    <div class="peril-footer">
+        <?php require 'footer.php' ?>
+    </div>
+    </div>
 </body>
 </html>

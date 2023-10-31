@@ -24,14 +24,17 @@
         $telefono = $_POST['telefono'];
         $lenguajes = isset($_POST['lenguajes']) ? $_POST['lenguajes'] : array();
         $viajar = isset($_POST['viajar']) ? $_POST['viajar'] : "";
-        $cambiarse_domicilio = isset($_POST['cambiarse_domicilio']) ? $_POST['cambiarse_domicilio'] : "";
+        $cambiarse_domicilio = isset($_POST['cambio_domicilio']) ? $_POST['cambio_domicilio'] : "";
         $ingles = isset($_POST['ingles']) ? $_POST['ingles'] : "";
         $puesto = $_POST['puesto'];
 
         // Agregar el logo de tu empresa al principio del documento
-        $logo_path = 'img/CodeCrafters.jpg';
-        $pdf->Image($logo_path, 10, 10, 50 , '', "JPG");
+        $logo_path = 'img/logo2.png';
+        $pdf->Image($logo_path, 10, 10, 50 , '', "PNG");
         
+        $pdf->SetLineWidth(0.5); // Establece el grosor de la línea del marco
+        $pdf->Rect(5, 5, 200, 280, 'D');
+
         if ($archivo["error"] == UPLOAD_ERR_OK && isset($_FILES["foto"])) {
             $archivo = $_FILES["foto"];
             // Verificar si el archivo es una imagen (puedes implementar una validación más sólida)
